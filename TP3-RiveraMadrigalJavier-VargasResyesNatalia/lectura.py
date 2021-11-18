@@ -10,16 +10,16 @@ global coleccion
 
 coleccion = {}
 
-def saveIndex(rutaIndice,coleccion):
+def saveIndex(rutaIndice,coleccion,ruta):
     if os.path.exists(rutaIndice):
-        createIndex(rutaIndice,coleccion)
+        createIndex(rutaIndice,coleccion,ruta)
 
     else:
         os.makedirs(rutaIndice)
-        createIndex(rutaIndice,coleccion)
+        createIndex(rutaIndice,coleccion,ruta)
 
-def createIndex(rutaIndice,coleccion):
-    with open(rutaIndice+'/'+'coleccion.json', 'w') as c:   
+def createIndex(rutaIndice,coleccion,ruta):
+    with open(rutaIndice+'/'+ruta+'.json', 'w') as c:
             json.dump(coleccion, c)
     
 
@@ -33,29 +33,36 @@ def getTerms(docTerms, index):
 
     return 
 
-def read_info(archivo,folder):
-    csv = pd.read_csv(archivo, index_col=0)
+def read_info(training,test,folder):
+    csv = pd.read_csv(training, index_col=0)
     index = 0
     for doc in csv.index:
         
         items = doc.split('\t')
-        print(items)
         coleccion[index] = dict({'DOCID':items[0],'CLASE':items[1], 'NTERMINOS':items[2], 'POSTINGS':[]})
     
         getTerms(items[3],index)
         index+=1
+
+    saveIndex(folder, coleccion,'training')
+
+    csv = pd.read_csv(test, index_col=0)
+    for doc in csv.index:
+        
+        items = doc.split('\t')
+        coleccion[index] = dict({'DOCID':items[0],'CLASE':items[1], 'NTERMINOS':items[2], 'POSTINGS':[]})
     
-    saveIndex(folder, coleccion)
+        getTerms(items[3],index)
+        index+=1
+
+    saveIndex(folder, coleccion,'test')
     return 
 
-
-#archivo = "C:/Users/javir/Desktop/TEC Javi/RIT/TP3-RiveraMadrigalJavier-VargasResyesNatalia/test-set.csv"
-#folder = 'C:/Users/javir/Desktop/TEC Javi/RIT/TP3-RiveraMadrigalJavier-VargasResyesNatalia/Index'
-archivo = 'D:\\2 SEMESTRE 2021\\RIT\\PROYECTOS\\Proyecto 3\\Tarea-Programada-3-RIT\\TP3-RiveraMadrigalJavier-VargasResyesNatalia\\training-set.csv'
-folder = 'D:\\2 SEMESTRE 2021\\RIT\\PROYECTOS\\Proyecto 3\\Tarea-Programada-3-RIT\\TP3-RiveraMadrigalJavier-VargasResyesNatalia\\Index'
-
-read_info(archivo,folder)
-
+def start():
+    archivoTraining = input('Ingrese la ruta del archivo de entrenamiento: ')
+    archivoTest = input ('Ingrese la ruta del archivo de prueba: ')
+    folder = input('ingrese la ruta donde quiere guardar los json: ')
+    read_info(archivoTraining,archivoTest,folder)
 
 #print(csv)
 
