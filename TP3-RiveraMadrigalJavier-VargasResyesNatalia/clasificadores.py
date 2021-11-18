@@ -311,8 +311,18 @@ def simDocCentroide(docPost,centroidPost):
 
     return round(res,6)
 
+def escribirEscalafon(docId,escalafon):
+    f = open('Escalafon.txt','a')
+    f.write(docId+': ')
+    for i in escalafon:
+        f.write(' '+i[0]+': '+str(i[1]))
+    f.write('\n\n')
 
-def rocchio(dir):
+    f.close()
+
+    return
+
+def rocchio(dir,b,g):
     coleccion = json.load(open(dir+'/'+'training.json','r'))
     prueba =  json.load(open(dir+'/'+'test.json','r'))
     getClasses(coleccion)
@@ -320,7 +330,7 @@ def rocchio(dir):
 
     for i in clases:
         getTerminosClase(i,coleccion) #agrega los terminos de la clase en el dict clases
-        calcularVector(i,coleccion,0.75,0.25)
+        calcularVector(i,coleccion,b,g)
         #agregarTerminosCentroide(coleccion)
 
     for doc in prueba:
@@ -341,16 +351,14 @@ def rocchio(dir):
         else:
             print(prueba[doc]['DOCID']+': '+prueba[doc]['CLASE'] , sim)
 
-        print('Escalafon :', escalafonDoc)
-        print('\n\n')
-        
-    lectura.saveIndex(dir,clases,'centroides')
-
+        print('Escalafon: ',escalafonDoc)
+        escribirEscalafon(prueba[doc]['DOCID'],escalafonDoc)
+    return
     
     
 def bayesianos(dir):
-    trainingSet = json.load(open(dir+'/'+'training-set.json','r'))
-    testSet = json.load(open(dir+'/'+'coleccion.json','r'))
+    trainingSet = json.load(open(dir+'/'+'training.json','r'))
+    testSet = json.load(open(dir+'/'+'test.json','r'))
     getClassesInfomation(trainingSet)
     #print(bayesianosClases)
     print()

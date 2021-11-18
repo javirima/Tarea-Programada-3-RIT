@@ -46,6 +46,7 @@ def read_info(training,test,folder):
 
     saveIndex(folder, coleccion,'training')
 
+    index = 0
     csv = pd.read_csv(test, index_col=0)
     for doc in csv.index:
         
