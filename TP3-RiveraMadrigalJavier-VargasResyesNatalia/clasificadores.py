@@ -62,6 +62,10 @@ def originalClassPerDoc(testSet):
 
 def calClassPerDoc(testSet,vectorsPerClassBayesian):
     '''
+    Para cada documento del testSet, se recorren los postings para extraer cada termino
+    luego para cada clase existente en vectorsPerClassBayesian, si la clase tiene el
+    termino del doc, se suma. Al finalizar, la clase con el valor más alto, es la
+    clase que define al documento.
     Nota: El formato de estimatedClassPerDoc es {"doc":"class"}
     '''
     
@@ -90,7 +94,6 @@ def calClassPerDoc(testSet,vectorsPerClassBayesian):
 
                 
     
-
 def calQip(termino,clase):
     '''
     Calcular el qip que es P('ki|Ci), es decir la probabilidad de que sea cualquier otro término
