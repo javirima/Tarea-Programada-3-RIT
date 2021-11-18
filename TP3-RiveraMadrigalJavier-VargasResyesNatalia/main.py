@@ -11,15 +11,18 @@ def menu():
 
         opcion = input('Ingrese la opcion: ')
         
-        if opcion == 1:
+        if opcion == '1':
+            print('holi')
             lectura.start()
-        elif opcion == 2:
-            dir = input('Ingrese el directorio donde se encuentra test y training')
+        elif opcion == '2':
+            dir = input('Ingrese el directorio donde se encuentra test y training: ')
             clasificadores.rocchio(dir)
 
-        elif opcion == 3:
+        elif opcion == '3':
+            dir = input('Ingrese el directorio donde se encuentra test y training: ')
+            clasificadores.main(dir)
             return
         else: 
             break
 
-            
+menu() 

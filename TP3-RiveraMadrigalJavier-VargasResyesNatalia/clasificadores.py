@@ -349,8 +349,8 @@ def rocchio(dir):
     
     
 def main(dir):
-    trainingSet = json.load(open(dir+'/'+'training-set.json','r'))
-    testSet = json.load(open(dir+'/'+'coleccion.json','r'))
+    trainingSet = json.load(open(dir+'/'+'training.json','r'))
+    testSet = json.load(open(dir+'/'+'test.json','r'))
     getClassesInfomation(trainingSet)
     #print(bayesianosClases)
     print()
@@ -372,11 +372,11 @@ def main(dir):
 
 
 #dir='C:/Users/javir/Desktop/TEC Javi/RIT/TP3-RiveraMadrigalJavier-VargasResyesNatalia/Index'
-dir='D:\\2 SEMESTRE 2021\\RIT\\PROYECTOS\\Proyecto 3\\Tarea-Programada-3-RIT\\TP3-RiveraMadrigalJavier-VargasResyesNatalia\\Index'
+#dir='D:\\2 SEMESTRE 2021\\RIT\\PROYECTOS\\Proyecto 3\\Tarea-Programada-3-RIT\\TP3-RiveraMadrigalJavier-VargasResyesNatalia\\Index'
 
 #rocchio(dir)
 
-main(dir)
+#main(dir)
 
 
 
