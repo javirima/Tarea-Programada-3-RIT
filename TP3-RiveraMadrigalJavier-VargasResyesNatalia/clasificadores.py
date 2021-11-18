@@ -82,12 +82,12 @@ def calClassPerDoc(testSet,vectorsPerClassBayesian):
                 if (searchInTerms(termino,vectorsPerClassBayesian[clase])):  #verifica que el termino se encuentre en los posting de esa clase
                     totalPerClass[clase] += getValueTermPerClass(termino,vectorsPerClassBayesian[clase])
                 else:
-                    totalPerClass[clase] = 0
+                    totalPerClass[clase] = 0   
 
             highKey = getHighKey(totalPerClass)
-            #print(totalPerClass,totalPerClass[highKey])
+            #print(totalPerClass,totalPerClass[highKey])  #Puede ser que también guardar para cada doc,todos los valores por clase
             #getHigh(totalPerClass)
-            estimatedClassPerDoc[docId] = highKey
+            estimatedClassPerDoc[docId] = [highKey,totalPerClass[highKey]] #Guardar el valor que le quedó
             
     return estimatedClassPerDoc
                     
@@ -99,13 +99,13 @@ def calQip(termino,clase):
     Calcular el qip que es P('ki|Ci), es decir la probabilidad de que sea cualquier otro término
     aparte de Ki, dado que es de la clase Ci
     Notas: termino[0] es el termino y termino[1] es la frecuencia del termino por clase
-    Se calcula (1+(ni-nip))/(2+(Nt-ni))
+    Se calcula (1+(ni-nip))/(2+(Nt-np))
     '''
     global bayesianosClases
     for listaTermino in  bayesianosClases[clase][1]:
         if listaTermino[0] == termino:
             #print((1+niBayesianos[termino]-listaTermino[1])/(2+totalDocuments-listaTermino[1]))
-            return (1+(niBayesianos[termino]-listaTermino[1]))/(2+(totalDocuments-listaTermino[1])) 
+            return (1+(niBayesianos[termino]-listaTermino[1]))/(2+(totalDocuments-bayesianosClases[clase][0])) 
 
     return 0
     
@@ -115,19 +115,20 @@ def calPip(termino,clase):
     Calcular el qip que es P(ki|Ci), es decir la probabilidad de que sea el término Ki
     dado que es de la clase Ci
     Notas: termino[0] es el termino y termino[1] es la frecuencia del termino por clase
-    Se calcula (1+nip)/(2+ni)
+    Se calcula (1+nip)/(2+np)
     '''
     global bayesianosClases
     for listaTermino in  bayesianosClases[clase][1]:
         if listaTermino[0] == termino:
             #print((1+listaTermino[1]) / (2+bayesianosClases[clase][0]))
-            return (1+listaTermino[1])/(2+bayesianosClases[clase][0])  
+            return (1+listaTermino[1])/(2+bayesianosClases[clase][0])   
     return 0
 
 
 
 def calVectorsPerClassBayesian():
     '''
+    Similitudes por clase.
     Retorna un diccionario con las clases y sus terminos una vez calculados los pip y qip para
     realizar la formula log2(pip/(1-pip))+ log2((1-qip)/qip)
     Nota: tempDicc tiene el siguiente formato {"Clase": [ [termino1,#], [termino2,#] ]}
@@ -313,6 +314,7 @@ def main(dir):
     estimatedClassPerDoc = calClassPerDoc(testSet,vectorsPerClassBayesian)
     originalClasses = originalClassPerDoc(testSet)
     #xd = originalClassPerDoc(trainingSet)
+
     printDicc(estimatedClassPerDoc)
     print("-----------------------------------------------------------------------------------------------------------------------")
     printDicc(originalClasses)
