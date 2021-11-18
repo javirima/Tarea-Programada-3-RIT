@@ -20,9 +20,13 @@ def menu():
 
         elif opcion == '3':
             dir = input('Ingrese el directorio donde se encuentra test y training: ')
-            clasificadores.main(dir)
+            clasificadores.bayesianos(dir)
             return
         else: 
             break
 
-menu() 
+menu()
+
+
+#D:\\2 SEMESTRE 2021\\RIT\\PROYECTOS\\Proyecto 3\\Tarea-Programada-3-RIT\\TP3-RiveraMadrigalJavier-VargasResyesNatalia\\Index
+#C:/Users/javir/Desktop/TEC Javi/RIT/TP3-RiveraMadrigalJavier-VargasResyesNatalia/Index
