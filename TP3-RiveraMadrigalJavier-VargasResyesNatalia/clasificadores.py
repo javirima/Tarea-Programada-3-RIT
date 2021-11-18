@@ -1,5 +1,6 @@
 
 import json
+import numpy as np
 
 global clases
 global totalDocuments
@@ -40,11 +41,16 @@ def calVectorsPerClassBayesian():
     tempDicc = {} #Para guardar {"Clase": [ [termino1,#], [termino2,#] ]}
                   #Donde # es la formula (Pip/(1-Pip)) + log((1-qip)/qip)
     for clase in bayesianosClases:
+        tempDicc[clase] = []
         for listaTermino in bayesianosClases[clase][1]:
-            #tempDicc[listaTermino[1]] = []
-            pip = calPip(listaTermino[0],clase)
-            qip = calQip(listaTermino[0],clase)
-            #formule = 
+            termino = listaTermino[0]
+            pip = calPip(termino,clase)
+            qip = calQip(termino,clase)
+            formule = np.round(np.log2(pip/(1-pip))+ np.log2((1-qip)/qip), 3)
+            tempDicc[clase].append([termino,formule])
+
+    print(tempDicc)
+            #print(formule)
             #listaTermino[1]
 
 def searchInTerms(termino, postings):
