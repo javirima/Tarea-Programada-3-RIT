@@ -2,6 +2,8 @@
 import json
 import numpy as np
 import operator
+import lectura
+import math
 
 global clases
 global totalDocuments
@@ -219,9 +221,13 @@ def getClassesInfomation(coleccion):
 
 
         
-def getClasses(coleccion):
-    global clases
+def getTotalDocuments(coleccion):
     global totalDocuments
+    for doc in coleccion:
+        totalDocuments = totalDocuments+1
+
+
+def getClasses(coleccion):
     index = 0
 
     for doc in coleccion:
@@ -232,12 +238,10 @@ def getClasses(coleccion):
             clases[coleccion[doc]['CLASE']] = [1,0,[]]
 
         index+=1
-        totalDocuments = totalDocuments+1  #Contar docs
 
 def sumarCantidad(clase,term):
     for terms in clases[clase][2]:
         if term == terms[0]:
-            print(term[1])
             term[1] = terms[1]+1
     return 
 
@@ -271,35 +275,79 @@ def calcularVector(clase,coleccion,b,g):
                 promC = sumarPromedio(promC,term[0],coleccion[doc]['POSTINGS'])
             else:
                 promNotC = sumarPromedio(promNotC,term[0],coleccion[doc]['POSTINGS'])
-        
-        term[1] = round((promC/clases[clase][0])*b - (promNotC/(totalDocuments-clases[clase][0]))*g,6 )
+        res = (promC/clases[clase][0])*b - (promNotC/(totalDocuments-clases[clase][0]))*g
+        res = round(math.sqrt(res**2),6)
+        term[1] = res
 
-
-
-    
     return 
 
-def calculateCentroide(key,b,y):
-    #clases[key][0] = documentos que estan en la clase p
-    centroide = ((b/clases[key][0])*clases[key][0])-(y/(totalDocuments-clases[key][0])*(clases[key][0]-totalDocuments))
-    clases[key][1] = centroide
+
+def revisarTermino(clase,term):
+    encontrado = False
+    for termClase in clases[clase][2]:
+        if termClase[0] == term:
+            encontrado = True
+            break
+    if encontrado == False:
+        clases[clase][2].append([term,0])
+
+
+'''
+def agregarTerminosCentroide(coleccion):
+    for clase in clases:
+        for post in coleccion:
+            for term in coleccion[post]['POSTINGS']:
+                revisarTermino(clase,term)
     return
+'''
+def simDocCentroide(docPost,centroidPost):
+    multTerms = [] 
+    for term in docPost:
+        if term in centroidPost.keys():
+            multTerms.append(float(docPost[term])*float(centroidPost[term]))
+    res = 0
+    for mult in multTerms:
+        res = res + mult
+
+    return round(res,6)
+
 
 def rocchio(dir):
-    coleccion = json.load(open(dir+'/'+'coleccion.json','r'))
+    coleccion = json.load(open(dir+'/'+'training.json','r'))
+    prueba =  json.load(open(dir+'/'+'test.json','r'))
     getClasses(coleccion)
-    print(clases)
+    getTotalDocuments(coleccion)
 
     for i in clases:
         getTerminosClase(i,coleccion) #agrega los terminos de la clase en el dict clases
-        print(clases)
         calcularVector(i,coleccion,0.75,0.25)
-        #calculateCentroide(i,0.75,0.25)
+        #agregarTerminosCentroide(coleccion)
 
-    print(clases)
+    for doc in prueba:
+        postDoc = dict(prueba[doc]['POSTINGS'])
+        sim = ['',-10]
+        escalafonDoc = []
+        for clase in clases:
+            postClass = dict(clases[clase][2])
+            simCentroid =simDocCentroide(postDoc,postClass)
+            escalafonDoc.append([clase,simCentroid])
+
+            if simCentroid > sim[1]:
+                sim[0] = clase
+                sim[1] = simCentroid
+
+        if sim[0] != prueba[doc]['CLASE']:
+            print(prueba[doc]['DOCID']+': '+prueba[doc]['CLASE'] , sim,'diff')
+        else:
+            print(prueba[doc]['DOCID']+': '+prueba[doc]['CLASE'] , sim)
+
+        print('Escalafon :', escalafonDoc)
+        print('\n\n')
+        
+    lectura.saveIndex(dir,clases,'centroides')
 
     
-
+    
 def main(dir):
     trainingSet = json.load(open(dir+'/'+'training-set.json','r'))
     testSet = json.load(open(dir+'/'+'coleccion.json','r'))
