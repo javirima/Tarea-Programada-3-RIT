@@ -19,7 +19,7 @@ def saveIndex(rutaIndice,coleccion):
         createIndex(rutaIndice,coleccion)
 
 def createIndex(rutaIndice,coleccion):
-    with open(rutaIndice+'/'+'coleccion.json', 'w') as c:
+    with open(rutaIndice+'/'+'coleccion.json', 'w') as c:   
             json.dump(coleccion, c)
     
 
@@ -49,8 +49,10 @@ def read_info(archivo,folder):
     return 
 
 
-archivo = "C:/Users/javir/Desktop/TEC Javi/RIT/TP3-RiveraMadrigalJavier-VargasResyesNatalia/test-set.csv"
-folder = 'C:/Users/javir/Desktop/TEC Javi/RIT/TP3-RiveraMadrigalJavier-VargasResyesNatalia/Index'
+#archivo = "C:/Users/javir/Desktop/TEC Javi/RIT/TP3-RiveraMadrigalJavier-VargasResyesNatalia/test-set.csv"
+#folder = 'C:/Users/javir/Desktop/TEC Javi/RIT/TP3-RiveraMadrigalJavier-VargasResyesNatalia/Index'
+archivo = 'D:\\2 SEMESTRE 2021\\RIT\\PROYECTOS\\Proyecto 3\\Tarea-Programada-3-RIT\\TP3-RiveraMadrigalJavier-VargasResyesNatalia\\training-set.csv'
+folder = 'D:\\2 SEMESTRE 2021\\RIT\\PROYECTOS\\Proyecto 3\\Tarea-Programada-3-RIT\\TP3-RiveraMadrigalJavier-VargasResyesNatalia\\Index'
 
 read_info(archivo,folder)
 
