@@ -323,6 +323,11 @@ def escribirEscalafon(docId,escalafon):
 
     return
 
+
+def evaluacion():
+        
+    return
+
 def rocchio(dir,b,g):
     coleccion = json.load(open(dir+'/'+'training.json','r'))
     prueba =  json.load(open(dir+'/'+'test.json','r'))
