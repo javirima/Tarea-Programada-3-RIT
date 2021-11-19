@@ -427,14 +427,8 @@ def bayesianos(dir):
     estimatedClassPerDoc = calClassPerDoc(testSet,vectorsPerClassBayesian)
     originalClasses = originalClassPerDoc(testSet)
     printEstimatedOriginal(estimatedClassPerDoc,originalClasses)
-    #printDicc(estimatedClassPerDoc)
-    #printDicc(originalClasses)
-    #print("-----------------------------------------------------------------------------------------------------------------------")
 
 
 
 
 
-
-
-bayesianos("D:\\2 SEMESTRE 2021\\RIT\\PROYECTOS\\Proyecto 3\\Tarea-Programada-3-RIT\\TP3-RiveraMadrigalJavier-VargasResyesNatalia\\Index")
