@@ -1,0 +1,62 @@
+18:  money-fx: 0.009411 trade: 0.013343 coffee: 0.056743 grain: 0.017531 crude: 0.012579
+
+52:  money-fx: 0.034886 trade: 0.031665 coffee: 0.025364 grain: 0.012998 crude: 0.014616
+
+68:  money-fx: 0.068733 trade: 0.013546 coffee: 0.022593 grain: 0.011304 crude: 0.012587
+
+111:  money-fx: 0.016565 trade: 0.054558 coffee: 0.031026 grain: 0.015621 crude: 0.012104
+
+118:  money-fx: 0.011368 trade: 0.016678 coffee: 0.087881 grain: 0.011202 crude: 0.010995
+
+121:  money-fx: 0.028242 trade: 0.02275 coffee: 0.033357 grain: 0.017941 crude: 0.013189
+
+142:  money-fx: 0.017183 trade: 0.021718 coffee: 0.021095 grain: 0.056155 crude: 0.009358
+
+152:  money-fx: 0.006323 trade: 0.008569 coffee: 0.010215 grain: 0.029752 crude: 0.003663
+
+170:  money-fx: 0.028277 trade: 0.025287 coffee: 0.040738 grain: 0.017856 crude: 0.072317
+
+192:  money-fx: 0.008686 trade: 0.011057 coffee: 0.014366 grain: 0.006016 crude: 0.080711
+
+208:  money-fx: 0.025989 trade: 0.014598 coffee: 0.032441 grain: 0.046716 crude: 0.0156
+
+219:  money-fx: 0.021409 trade: 0.023605 coffee: 0.029723 grain: 0.054666 crude: 0.016972
+
+226:  money-fx: 0.016196 trade: 0.023959 coffee: 0.021442 grain: 0.033514 crude: 0.01305
+
+235:  money-fx: 0.04408 trade: 0.019699 coffee: 0.02541 grain: 0.013049 crude: 0.014655
+
+260:  money-fx: 0.022298 trade: 0.04194 coffee: 0.041726 grain: 0.018333 crude: 0.017269
+
+273:  money-fx: 0.018205 trade: 0.009473 coffee: 0.010607 grain: 0.010152 crude: 0.01169
+
+322:  money-fx: 0.011865 trade: 0.028748 coffee: 0.020869 grain: 0.042684 crude: 0.010691
+
+343:  money-fx: 0.016578 trade: 0.018718 coffee: 0.016718 grain: 0.044423 crude: 0.016282
+
+354:  money-fx: 0.020338 trade: 0.043192 coffee: 0.027738 grain: 0.015413 crude: 0.007485
+
+365:  money-fx: 0.019768 trade: 0.060517 coffee: 0.03245 grain: 0.016983 crude: 0.013068
+
+424:  money-fx: 0.01512 trade: 0.026244 coffee: 0.024275 grain: 0.032717 crude: 0.009198
+
+444:  money-fx: 0.014881 trade: 0.022798 coffee: 0.091555 grain: 0.018448 crude: 0.016313
+
+445:  money-fx: 0.003331 trade: 0.009196 coffee: 0.012661 grain: 0.024742 crude: 0.012156
+
+463:  money-fx: 0.012296 trade: 0.004131 coffee: 0.013188 grain: 0.011935 crude: 0.034069
+
+477:  money-fx: 0.012571 trade: 0.017725 coffee: 0.00976 grain: 0.052034 crude: 0.011121
+
+479:  money-fx: 0.003375 trade: 0.012406 coffee: 0.062804 grain: 0.012348 crude: 0.003828
+
+482:  money-fx: 0.01712 trade: 0.007846 coffee: 0.017163 grain: 0.024709 crude: 0.011007
+
+496:  money-fx: 0.154222 trade: 0.014487 coffee: 0.017364 grain: 0.012841 crude: 0.014144
+
+498:  money-fx: 0.009799 trade: 0.010476 coffee: 0.017625 grain: 0.007884 crude: 0.032065
+
+506:  money-fx: 0.039839 trade: 0.034085 coffee: 0.01653 grain: 0.013674 crude: 0.025655
+
+519:  money-fx: 0.015806 trade: 0.011645 coffee: 0.02619 grain: 0.012818 crude: 0.048645
+

@@ -18,6 +18,26 @@ vectoresBayesianos = {}
 #clase=[docsClase,centroide,[terminos]]
 
 #-----------------------------------Inicio Bayesianos--------------------------------------#
+
+def printEstimatedOriginal(estimatedClassPerDoc,originalClasses):
+    print("DocId \t Real \t\t Estimado ")
+    for docId in estimatedClassPerDoc:
+        print(docId,"\t",originalClasses[docId],"\t\t",estimatedClassPerDoc[docId])
+        
+
+        
+def writeEscalafon(docId,escalafon):
+    f = open('EscalafonBayesianos.txt','a')
+    f.write(docId+': ')
+    for i in escalafon:
+        f.write(' '+i+': '+str(escalafon[i]))
+    f.write('\n\n')
+
+    f.close()
+
+    return
+
+
 def printDicc(dicc):
     for key in dicc:
         print(key,": ",dicc[key])
@@ -74,40 +94,43 @@ def calClassPerDoc(testSet,vectorsPerClassBayesian):
     '''
     
     estimatedClassPerDoc = {}
-    totalPerClass = {}
+    
+    
     
     for doc in testSet:
+        
+        totalPerClass = {}    #Totales para cada clase para cada documento
         postings = testSet[doc]["POSTINGS"]  # formato [[termino1,#],[termino2,#]]
         docId = testSet[doc]["DOCID"]
         
-        for listaTermino in postings:  #recorre lista de postings del doc actual
+        for listaTermino in postings:  #Por cada termino sumo su peso segun la clase
             
             termino = listaTermino[0]
 
-            
             for clase in vectorsPerClassBayesian:
-                
-                if (searchInTerms(termino,vectorsPerClassBayesian[clase])):  #verifica que el termino se encuentre en los posting de esa clase
-                    
-                    pesoTermino = np.float64(getValueTerm(termino,postings)) #Busca el peso de un termino en los postings dados
-                    totalPerClass[clase] += pesoTermino*getValueTerm(termino,vectorsPerClassBayesian[clase])
-                    #print(pesoTermino)
+     
+                if (clase in totalPerClass):  #verifica que el termino se encuentre en los posting de esa clase
+                    if searchInTerms(termino,vectorsPerClassBayesian[clase]):
+                        pesoTermino = np.float64(getValueTerm(termino,postings)) #Busca el peso de un termino en los postings dados
+                        totalPerClass[clase] += np.round(pesoTermino*getValueTerm(termino,vectorsPerClassBayesian[clase]), 3)
                 else:
                     totalPerClass[clase] = 0  
             
-            #calcBayesian(termino,vectorsPerClassBayesian)
             
-            highKey = getHighKey(totalPerClass)
-       
-            #getHigh(totalPerClass)
-            estimatedClassPerDoc[docId] = [highKey,totalPerClass[highKey]] #Guardar el valor que le quedó
-        print(totalPerClass,totalPerClass[highKey])  #Puede ser que también guardar para cada doc,todos los valores por clase
+        highKey = getHighKey(totalPerClass)
+        estimatedClassPerDoc[docId] = [highKey,totalPerClass[highKey]]  #Guardar el valor que le quedó
+        writeEscalafon(docId,totalPerClass)
         
     return estimatedClassPerDoc
                     
 
-'''
+
 def calcBayesian(termino,vectorsPerClassBayesian):
+    '''
+    Nota: El formato de totalPerClass es {"Clase1": valor,"Clase2": valor}
+    '''
+
+    totalPerClass = {}
     
     for clase in vectorsPerClassBayesian:
                 
@@ -119,7 +142,7 @@ def calcBayesian(termino,vectorsPerClassBayesian):
         else:
             totalPerClass[clase] = 0
 
-'''
+
             
     
 def calQip(termino,clase):
@@ -345,7 +368,7 @@ def simDocCentroide(docPost,centroidPost):
     return round(res,6)
 
 def escribirEscalafon(docId,escalafon):
-    f = open('Escalafon.txt','a')
+    f = open('Escalafon2.txt','a')
     f.write(docId+': ')
     for i in escalafon:
         f.write(' '+i[0]+': '+str(i[1]))
@@ -399,24 +422,15 @@ def bayesianos(dir):
     testSet = json.load(open(dir+'/'+'test.json','r'))
     getTotalDocuments(trainingSet)
     getClassesInfomation(trainingSet)
-    #print(bayesianosClases) #HASTA AQUI BIEN
-    #print()
-    #print("----------------------------------------------------------------------------------------------------------------------")
 
-    #print(niBayesianos)#HASTA AQUI BIEN
-    
-    vectorsPerClassBayesian = calVectorsPerClassBayesian()  #HASTA AQUI BIEN
-    #print(vectorsPerClassBayesian)
+    vectorsPerClassBayesian = calVectorsPerClassBayesian()  
     estimatedClassPerDoc = calClassPerDoc(testSet,vectorsPerClassBayesian)
-    #originalClasses = originalClassPerDoc(testSet)
-    #xd = originalClassPerDoc(trainingSet)
-
+    originalClasses = originalClassPerDoc(testSet)
+    printEstimatedOriginal(estimatedClassPerDoc,originalClasses)
     #printDicc(estimatedClassPerDoc)
-    #print("-----------------------------------------------------------------------------------------------------------------------")
     #printDicc(originalClasses)
     #print("-----------------------------------------------------------------------------------------------------------------------")
-    #printDicc(xd)
-    
+
 
 
 
