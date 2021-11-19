@@ -31,7 +31,8 @@ def getHighKey(totalPerClass):
     return max_key
 
 
-def getValueTermPerClass(termino, postings):
+
+def getValueTerm(termino, postings):
     '''
     Suma en cada clase los valores asociados a la formula  log2(pip/(1-pip))+ log2((1-qip)/qip)
     para cada termino, para clase.
@@ -82,7 +83,9 @@ def calClassPerDoc(testSet,vectorsPerClassBayesian):
 
             for clase in vectorsPerClassBayesian:
                 if (searchInTerms(termino,vectorsPerClassBayesian[clase])):  #verifica que el termino se encuentre en los posting de esa clase
-                    totalPerClass[clase] += getValueTermPerClass(termino,vectorsPerClassBayesian[clase])
+                    
+                    pesoTermino = np.float64(getValueTerm(termino,postings)) #Busca el peso de un termino en los postings dados
+                    totalPerClass[clase] += pesoTermino*getValueTerm(termino,vectorsPerClassBayesian[clase])
                 else:
                     totalPerClass[clase] = 0   
 
@@ -182,7 +185,6 @@ def getClassesInfomation(coleccion):
     cuantos documentos estaba y se guarda en el diccionario niBayesianos.
     '''
     global bayesianosClases
-    global totalDocuments
 
     for doc in coleccion:
 
@@ -193,7 +195,6 @@ def getClassesInfomation(coleccion):
         else:
             bayesianosClases[clase] = [1,[]]  #Agrega la clase con su frecuencia y lista de terminos
             
-       
         
         for listaTermino in coleccion[doc]["POSTINGS"]:  #recorre lista de postings del doc actual
             
@@ -212,7 +213,7 @@ def getClassesInfomation(coleccion):
             else:
                 niBayesianos[termino] = 1
 
-        totalDocuments = totalDocuments+1  #Contar docs, total np
+      
 
 
 
@@ -351,7 +352,7 @@ def rocchio(dir,b,g):
         else:
             print(prueba[doc]['DOCID']+': '+prueba[doc]['CLASE'] , sim)
 
-        print('Escalafon: ',escalafonDoc)
+        #print('Escalafon: ',escalafonDoc)
         escribirEscalafon(prueba[doc]['DOCID'],escalafonDoc)
     return
     
@@ -359,6 +360,7 @@ def rocchio(dir,b,g):
 def bayesianos(dir):
     trainingSet = json.load(open(dir+'/'+'training.json','r'))
     testSet = json.load(open(dir+'/'+'test.json','r'))
+    getTotalDocuments(trainingSet)
     getClassesInfomation(trainingSet)
     #print(bayesianosClases)
     print()
@@ -377,6 +379,7 @@ def bayesianos(dir):
     #print("-----------------------------------------------------------------------------------------------------------------------")
     #printDicc(xd)
     
+
 
 
 
