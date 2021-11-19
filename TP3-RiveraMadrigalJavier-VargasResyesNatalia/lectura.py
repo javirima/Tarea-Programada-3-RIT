@@ -5,10 +5,11 @@ import os
 
 
 global coleccion
-
+global test
 
 
 coleccion = {}
+prueba = {}
 
 def saveIndex(rutaIndice,coleccion,ruta):
     if os.path.exists(rutaIndice):
@@ -34,6 +35,7 @@ def getTerms(docTerms, index):
     return 
 
 def read_info(training,test,folder):
+    global coleccion
     csv = pd.read_csv(training, index_col=0)
     index = 0
     for doc in csv.index:
@@ -46,6 +48,7 @@ def read_info(training,test,folder):
 
     saveIndex(folder, coleccion,'training')
 
+    coleccion = {}
     index = 0
     csv = pd.read_csv(test, index_col=0)
     for doc in csv.index:

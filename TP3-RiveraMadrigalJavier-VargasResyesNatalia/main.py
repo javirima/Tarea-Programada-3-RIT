@@ -17,8 +17,8 @@ def menu():
         elif opcion == '2':
             dir = input('Ingrese el directorio donde se encuentra test y training: ')
             clasificadores.rocchio(dir,0.75,0.25)
-            clasificadores.rocchio(dir,0.85,0.15)
-            clasificadores.rocchio(dir,0.95,0.05)
+            #clasificadores.rocchio(dir,0.85,0.15)
+            #clasificadores.rocchio(dir,0.95,0.05)
 
         elif opcion == '3':
             dir = input('Ingrese el directorio donde se encuentra test y training: ')

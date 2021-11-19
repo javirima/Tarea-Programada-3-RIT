@@ -322,6 +322,11 @@ def escribirEscalafon(docId,escalafon):
 
     return
 
+
+def evaluacion():
+        
+    return
+
 def rocchio(dir,b,g):
     coleccion = json.load(open(dir+'/'+'training.json','r'))
     prueba =  json.load(open(dir+'/'+'test.json','r'))
@@ -351,7 +356,7 @@ def rocchio(dir,b,g):
         else:
             print(prueba[doc]['DOCID']+': '+prueba[doc]['CLASE'] , sim)
 
-        print('Escalafon: ',escalafonDoc)
+        #print('Escalafon: ',escalafonDoc)
         escribirEscalafon(prueba[doc]['DOCID'],escalafonDoc)
     return
     
