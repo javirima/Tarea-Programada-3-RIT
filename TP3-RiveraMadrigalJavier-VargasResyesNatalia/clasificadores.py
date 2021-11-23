@@ -368,7 +368,7 @@ def simDocCentroide(docPost,centroidPost):
     return round(res,6)
 
 def escribirEscalafon(docId,escalafon):
-    f = open('Escalafon2.txt','a')
+    f = open('Escalafon.txt','a')
     f.write(docId+': ')
     for i in escalafon:
         f.write(' '+i[0]+': '+str(i[1]))
