@@ -1,0 +1,6 @@
+DOCID	CLASE	NUM-TERMINOS	TERMINOS[termino/peso]
+1	C1	2	coca/0.825924 foxtrot/0.563781
+2	C2	2	delta/0.911519 foxtrot/0.411258
+3	C3	3	alfa/0.51145 bravo/0.810629 eco/0.28513
+4	C3	2	bravo/0.873438 eco/0.486935
+5	C3	3	alfa/0.415918 coca/0.831836 eco/0.367507

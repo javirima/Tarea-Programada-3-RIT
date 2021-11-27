@@ -1,0 +1,31 @@
+DOCID	CLASE	NUM-TERMINOS	TERMINOS[termino/peso]
+11	A	3	alfa/0.563388 coca/0.748971 eco/0.348765
+12	B	4	alfa/0.408826 bravo/0.56723 foxtrot/0.257941 golfo/0.666767
+13	A	3	coca/0.743599 delta/0.514778 foxtrot/0.426688
+14	A	3	bravo/0.495203 coca/0.495203 foxtrot/0.713827
+15	B	3	bravo/0.869799 eco/0.405029 foxtrot/0.281781
+16	A	4	coca/0.419639 delta/0.729786 foxtrot/0.381651 golfo/0.381651
+17	A	5	alfa/0.279215 coca/0.614014 delta/0.53391 eco/0.253218 golfo/0.442546
+18	C	4	alfa/0.685124 delta/0.413284 eco/0.492394 golfo/0.342562
+19	B	3	alfa/0.705474 bravo/0.614722 foxtrot/0.352737
+20	C	3	alfa/0.68597 eco/0.424649 golfo/0.590862
+21	A	4	alfa/0.664144 bravo/0.365125 coca/0.578709 eco/0.301153
+22	C	3	eco/0.384883 foxtrot/0.751713 golfo/0.535531
+23	B	4	bravo/0.466589 delta/0.750006 eco/0.38484 golfo/0.267736
+24	B	3	bravo/0.814391 delta/0.44679 foxtrot/0.370334
+25	B	3	bravo/0.690051 eco/0.56915 golfo/0.4471
+26	B	3	bravo/0.720531 delta/0.62653 eco/0.297145
+27	B	3	alfa/0.789541 bravo/0.532291 foxtrot/0.305436
+28	B	3	bravo/0.483266 delta/0.530258 foxtrot/0.696621
+29	A	5	alfa/0.400783 bravo/0.278035 coca/0.440675 foxtrot/0.709884 golfo/0.252866
+30	A	4	alfa/0.330496 coca/0.363392 delta/0.631967 eco/0.599447
+31	A	3	coca/0.574383 delta/0.630234 foxtrot/0.522387
+32	A	4	coca/0.545517 delta/0.598562 foxtrot/0.496134 golfo/0.313026
+33	B	3	bravo/0.758128 eco/0.269302 foxtrot/0.593901
+34	C	3	alfa/0.373495 delta/0.714189 golfo/0.591976
+35	A	3	alfa/0.338507 bravo/0.864222 coca/0.3722
+36	C	3	eco/0.539811 foxtrot/0.595233 golfo/0.595233
+37	A	3	coca/0.884021 eco/0.314022 golfo/0.346262
+38	A	3	alfa/0.741501 coca/0.407653 eco/0.532912
+39	A	4	alfa/0.310887 coca/0.341831 delta/0.37507 golfo/0.803631
+40	C	3	alfa/0.303932 eco/0.64 golfo/0.705709
